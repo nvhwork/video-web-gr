@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8 />
+		<title>Live Stream Test Demo</title>
+		<link rel="shortcut icon" href="../icon/@NVH-play.png" type="image/x-icon">
+		<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+		<script src="https://unpkg.com/video.js/dist/video.js"></script>
+		<script src="https://unpkg.com/@videojs/http-streaming/dist/videojs-http-streaming.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+		<style>
+			body {
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			}
+			h1, p {
+				text-align: center;
+			}
+			.center {
+				margin-left: auto;
+				margin-right: auto;
+				display: block
+			}
+		</style>
+	</head>
+	<body>
+		<h1>NVHplay.TV Live Stream Testing</h1><hr>
+		<video id="videohls" class="video-js vjs-default-skin center" controls autoplay width="900">
+			<source src="/hls/live/index.m3u8" type="application/vnd.apple.mpegURL">
+		</video>
+		<script>
+			var player = videojs('videohls');
+			player.play();
+		</script>
+
+		<!-- <script>
+			var video = document.getElementById('videohls');
+			var videoSrc = '/hls/live/index.m3u8';
+			// var player = videojs('videohls');
+
+			/* Lower the latency (15s -> 7s) */
+			if (Hls.isSupported()) {
+				console.log('HLS supported!');
+				var hls = new Hls({liveSyncDuration:3}); // The solution is here!!!!!
+				/**
+				 * @liveSyncDuration: Edge of live delay, expressed in seconds vs
+				 * number of segments.
+				 */
+				hls.attachMedia(video); // Bind "video" and "hls" together
+				hls.loadSource(videoSrc);
+				hls.on(Hls.Events.MANIFEST_PARSED, function() {
+					hls.startLoad(); // Invoked to recover network error, if happens
+					video.play();
+				});
+			} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+				video.src = videoSrc;
+				video.addEventListener('loadedmetadata', function() {
+					video.play();
+				});
+			}
+		</script> -->
+	</body>
+</html>

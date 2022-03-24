@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8 />
+		<title>VOD Test Demo</title>
+		<link rel="shortcut icon" href="../icon/@NVH-play.png" type="image/x-icon">
+		<link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
+		<link href="https://unpkg.com/@silvermine/videojs-quality-selector/dist/css/quality-selector.css" rel="stylesheet">
+		<script src="https://unpkg.com/video.js/dist/video.min.js"></script>
+		<script src="https://unpkg.com/@videojs/http-streaming/dist/videojs-http-streaming.js"></script>
+		<script src="https://unpkg.com/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"></script>
+		<style>
+			body {
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			}
+			h1, p {
+				text-align: center;
+			}
+			.center {
+				margin-left: auto;
+				margin-right: auto;
+				display: block
+			}
+			.video-js .vjs-time-control {
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<!--  <h1>Video.js Example Embed</h1> -->
+		<h1>NVHplay.TV VOD Testing</h1><hr>
+		<video id="video" class="video-js vjs-default-skin center" width="900" controls autoplay preload="auto">
+			<source src="/hls/vod/Rai_R3_N2/master.m3u8" type="application/vnd.apple.mpegURL" label='Auto' />
+			<source src="/hls/vod/Rai_R3_N2/stream_0/prog_index.m3u8" type="application/vnd.apple.mpegURL" label="1080p" />
+			<source src="/hls/vod/Rai_R3_N2/stream_1/prog_index.m3u8" type="application/vnd.apple.mpegURL" label="360p" />
+		</video>
+		<p>RAI_R3 Testing | Fewer quality selection: N = 2, t = 2</p>
+
+		<script>
+			let options = {
+				controlBar: {
+					children: [
+						'playToggle',
+						'currentTimeDisplay',
+						'timeDivider',
+						'durationDisplay',
+						'progressControl',
+						'volumePanel',
+						'qualitySelector',
+						'fullscreenToggle',
+					],
+				},
+			};
+			let player = videojs('video', options);
+		</script>
+	</body>
+</html>
